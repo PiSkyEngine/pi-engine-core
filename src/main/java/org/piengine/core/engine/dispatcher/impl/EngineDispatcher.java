@@ -21,17 +21,44 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package org.piengine.core;
+
+package org.piengine.core.engine.dispatcher.impl;
+
+import java.util.List;
+
+import org.piengine.core.Updatable;
+import org.piengine.core.engine.dispatcher.DispatchableWorker;
 
 /**
- * The Class Main.
- *
- * @author Mark Bednarczyk [mark@slytechs.com]
- * @author Sly Technologies Inc.
+ * PiEngine work dispatcher. This interface defines dispatchers which the engine
+ * uses to dispatch work to specific
  */
-public class Main {
+public interface EngineDispatcher extends Updatable {
 
-	void main() {
-		System.out.println("Hello World");
-	}
+	/**
+	 * Register workers which are dispatchable by this dispatcher. The method
+	 * returns a list of only the workers which are compatible with this dispatcher
+	 * and which were registered.
+	 *
+	 * @param worker a list of workers which may or may not be compatible with this
+	 *               dispatcher
+	 * @return a list of workers which were registered
+	 */
+	List<DispatchableWorker> registerWorkers(List<DispatchableWorker> worker);
+	
+	/**
+	 * Register worker.
+	 *
+	 * @param worker the worker
+	 * @return true, if successful
+	 */
+	boolean registerWorker(DispatchableWorker worker);
+
+	/**
+	 * Main update loop.
+	 *
+	 * @param tpf time per frame as fraction of a second since last frame
+	 */
+	@Override
+	void updateFrame(float tpf);
 }

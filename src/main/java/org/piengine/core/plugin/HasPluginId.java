@@ -21,17 +21,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package org.piengine.core;
+
+package org.piengine.core.plugin;
+
+import org.piengine.core.plugin.registry.PluginRegistry;
 
 /**
- * The Class Main.
- *
  * @author Mark Bednarczyk [mark@slytechs.com]
  * @author Sly Technologies Inc.
  */
-public class Main {
+public interface HasPluginId {
 
-	void main() {
-		System.out.println("Hello World");
-	}
+	/**
+	 * Retrieves the unique identifier of the plugin.
+	 * <p>
+	 * The plugin identifier follows a Maven-style coordinate format (e.g.,
+	 * "org.example:my-plugin:1.0.0") as defined by the {@link PluginId} class. This
+	 * identifier is used by the {@link PluginRegistry} to locate and manage the
+	 * plugin.
+	 * </p>
+	 * fig(str + "_parsed"));
+	 *
+	 * @return the unique {@link PluginId} of the plugin
+	 */
+	PluginId pluginId();
+
 }

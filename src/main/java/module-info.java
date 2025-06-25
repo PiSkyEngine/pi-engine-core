@@ -46,7 +46,7 @@
  *   <li>{@code org.pi.game.engine.core.state}: Application state management,
  *       including {@code AppState} and {@code StateManager} for managing game
  *       states (e.g., menu, gameplay).</li>
- *   <li>{@code org.pi.game.engine.core.task}: Task scheduling with {@code Task}
+ *   <li>{@code org.pi.game.engine.core.task}: MethodTask2 scheduling with {@code MethodTask2}
  *       and {@code TaskScheduler}, using StructuredTaskScope for multi-threading.</li>
  *   <li>{@code org.pi.game.engine.core.input}: Input handling with
  *       {@code InputManager} for processing keyboard, mouse, and other inputs.</li>
@@ -80,7 +80,7 @@
  * import org.pi.game.engine.core.plugin.Plugin;
  * import org.pi.game.engine.core.state.AppState;
  * import org.pi.game.engine.core.state.StateManager;
- * import org.piengine.commons.math.coordinates.Cartesian3f;
+ * import org.piengine.math.coordinates.Cartesian3f;
  *
  * class SimplePlugin implements Plugin {
  *     public void init() { System.out.println("SimplePlugin initialized"); }
@@ -109,14 +109,41 @@
  *
  * @since 0.0.1
  */
+
+import org.piengine.core.plugin.registry.spi.PluginService;
+
 module org.piengine.core {
-    exports org.piengine.core;
-    exports org.piengine.core.plugin;
-    exports org.piengine.core.app;
-    exports org.piengine.core.scene;
-    
-    requires org.yaml.snakeyaml;
-    requires java.base;
-    requires transitive org.piengine.math;
-    requires transitive org.piengine.util;
+	exports org.piengine.core;
+	exports org.piengine.core.engine;
+	exports org.piengine.core.execution;
+	exports org.piengine.core.engine.dispatcher;
+	exports org.piengine.core.plugin;
+	exports org.piengine.core.plugin.render;
+	exports org.piengine.core.plugin.app;
+	exports org.piengine.core.plugin.registry;
+	exports org.piengine.core.plugin.registry.spi;
+	exports org.piengine.core.scene;
+	exports org.piengine.core.logging;
+
+	requires org.yaml.snakeyaml;
+	requires transitive java.logging;
+	requires transitive org.piengine.math;
+	requires transitive org.piengine.util;
+	requires transitive org.piengine.inject;
+
+	opens org.piengine.core to org.piengine.util;
+
+	uses PluginService;
+
+	provides PluginService with
+	
+			/* Multi-threaded plugin dispatcher */
+			org.piengine.core.engine.dispatcher.impl.ThreadedDispatcherProvider,
+
+			org.piengine.core.plugin.impl.DummyPluginProvider,
+			org.piengine.core.plugin.impl.MyPluginProvider,
+			org.piengine.core.plugin.impl.DebugPluginProvider,
+			org.piengine.core.plugin.impl.OpenGLRasterPluginProvider,
+
+			org.piengine.core.plugin.impl.TestPluginProvider;
 }

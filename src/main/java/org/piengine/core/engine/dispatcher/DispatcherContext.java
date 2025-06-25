@@ -21,17 +21,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package org.piengine.core;
+
+package org.piengine.core.engine.dispatcher;
+
+import java.util.concurrent.Phaser;
 
 /**
- * The Class Main.
- *
  * @author Mark Bednarczyk [mark@slytechs.com]
  * @author Sly Technologies Inc.
  */
-public class Main {
+public final class DispatcherContext {
 
-	void main() {
-		System.out.println("Hello World");
+	private final Phaser workerPhaser = new Phaser();
+
+	public Phaser workerPhaser() {
+		return workerPhaser;
 	}
 }

@@ -21,17 +21,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package org.piengine.core;
+
+package org.piengine.core.execution.impl;
+
+import java.util.List;
+
+import org.piengine.core.Updatable;
+import org.piengine.core.engine.EngineContext;
 
 /**
- * The Class Main.
- *
  * @author Mark Bednarczyk [mark@slytechs.com]
  * @author Sly Technologies Inc.
  */
-public class Main {
+public class SharedUpdatableExecutor implements Updatable {
 
-	void main() {
-		System.out.println("Hello World");
+	private Updatable[] updatableList;
+
+	public void initialize(EngineContext engineContext, List<UpdatableTask> updateTaskList) {
+		updatableList = updateTaskList.toArray(Updatable[]::new);
+	}
+
+	public void shutdown() {
+		updatableList = null;
+	}
+
+	public void start() {}
+
+	public void stop() {}
+
+	/**
+	 * @see org.piengine.core.Updatable#updateFrame(float)
+	 */
+	@Override
+	public void updateFrame(float tpf) {
+		for (var up : updatableList)
+			up.updateFrame(tpf);
 	}
 }

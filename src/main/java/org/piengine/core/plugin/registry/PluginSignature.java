@@ -21,17 +21,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package org.piengine.core;
+package org.piengine.core.plugin.registry;
+
+import java.security.cert.Certificate;
 
 /**
- * The Class Main.
+ * Represents a digital signature for a plugin in the PIEngine framework.
+ * <p>
+ * This record encapsulates the cryptographic signature and associated
+ * certificate used to verify the authenticity and integrity of a plugin. The
+ * signature is typically generated using a private key and can be validated
+ * using the public key contained in the certificate. This information is stored
+ * in the plugin's metadata and used by a {@link PluginVerifier} to ensure the
+ * plugin has not been tampered with and originates from a trusted source.
+ * </p>
  *
+ * @param signature   the byte array containing the cryptographic signature
+ * @param certificate the certificate containing the public key for signature
+ *                    verification
  * @author Mark Bednarczyk [mark@slytechs.com]
  * @author Sly Technologies Inc.
+ * @since 1.0
  */
-public class Main {
-
-	void main() {
-		System.out.println("Hello World");
-	}
-}
+public record PluginSignature(byte[] signature, Certificate certificate) {}

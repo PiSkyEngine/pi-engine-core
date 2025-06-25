@@ -21,17 +21,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package org.piengine.core;
+
+package org.piengine.core.engine.dispatcher;
+
+import org.piengine.core.plugin.PluginContext;
+import org.piengine.core.plugin.PluginController;
 
 /**
- * The Class Main.
- *
  * @author Mark Bednarczyk [mark@slytechs.com]
  * @author Sly Technologies Inc.
  */
-public class Main {
+public interface DispatchablePlugin {
 
-	void main() {
-		System.out.println("Hello World");
-	}
+	void initialize(PluginContext pluginContext, PluginController pluginController);
+
+	int priority();
 }

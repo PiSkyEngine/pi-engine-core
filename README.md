@@ -46,7 +46,7 @@ Create a simple scene with a node representing a 3D object (e.g., a cube):
 ```java
 import org.pi.game.engine.core.scene.Scene;
 import org.pi.game.engine.core.scene.SceneNode;
-import org.piengine.commons.math.coordinates.Cartesian3f;
+import org.piengine.math.coordinates.Cartesian3f;
 
 public class SceneExample {
     public static void main(String[] args) {
@@ -196,7 +196,7 @@ THE SOFTWARE.
 
 #### **Alignment with PI Engine**
 - **Module Name**: Reflects the `pi-engine-core` name.
-- **Packages**: Uses `org.pi.game.engine.core.scene`, `org.pi.game.engine.core.plugin`, `org.pi.game.engine.core.state`, and `org.piengine.commons.math.coordinates`, as per the specification.
+- **Packages**: Uses `org.pi.game.engine.core.scene`, `org.pi.game.engine.core.plugin`, `org.pi.game.engine.core.state`, and `org.piengine.math.coordinates`, as per the specification.
 - **Version**: Matches the project version (`0.0.1-SNAPSHOT`).
 - **Java 23**: Noted in requirements, with `--enable-preview` for features like StructuredTaskScope and Virtual Threads.
 - **Dependencies**: Highlights reliance on `pi-engine-math` (for `Cartesian3f`) and `pi-engine-util` (for concurrency/event handling, implied in the app state example).

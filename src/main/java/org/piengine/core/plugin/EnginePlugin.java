@@ -21,17 +21,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package org.piengine.core;
+package org.piengine.core.plugin;
 
 /**
- * The Class Main.
+ * 
  *
  * @author Mark Bednarczyk [mark@slytechs.com]
  * @author Sly Technologies Inc.
  */
-public class Main {
+public interface EnginePlugin {
 
-	void main() {
-		System.out.println("Hello World");
-	}
+	void update(float dt);
+	
 }

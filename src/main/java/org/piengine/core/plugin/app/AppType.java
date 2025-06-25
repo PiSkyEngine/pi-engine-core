@@ -21,17 +21,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package org.piengine.core;
+package org.piengine.core.plugin.app;
 
 /**
- * The Class Main.
- *
- * @author Mark Bednarczyk [mark@slytechs.com]
- * @author Sly Technologies Inc.
+ * Enum defining common app types for concurrent execution.
+ * Users can extend with custom types.
  */
-public class Main {
-
-	void main() {
-		System.out.println("Hello World");
-	}
+public enum AppType {
+    
+    /** The menu. */
+    MENU,
+    
+    /** The world. */
+    WORLD,
+    
+    /** The hud. */
+    HUD,
+    
+    /** The map. */
+    MAP,
+    
+    /** The status bar. */
+    STATUS_BAR,
+    
+    /** The editor. */
+    EDITOR,
+    
+    /** The loading. */
+    LOADING,
+    
+    /** The paused. */
+    PAUSED
 }

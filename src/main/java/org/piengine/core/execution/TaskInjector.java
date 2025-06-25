@@ -21,17 +21,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package org.piengine.core;
+
+package org.piengine.core.execution;
 
 /**
- * The Class Main.
+ * 
  *
  * @author Mark Bednarczyk [mark@slytechs.com]
  * @author Sly Technologies Inc.
  */
-public class Main {
+public interface TaskInjector {
 
-	void main() {
-		System.out.println("Hello World");
+	<T> T getInstance(Class<T> instanceClass);
+
+	/**
+	 * Retrieves parameters for a method's injection points. If any parameters are
+	 * not resolvable, this optional variant will inject null for the parameter
+	 * value.
+	 *
+	 * @param parameterTypes array of parameter types to get where nay null elements
+	 *                       are skipped
+	 * @return an array of parameter instances
+	 */
+
+	default Object[] getOptionalParameters(Class<?>... parameterTypes) {
+		var args = new Object[parameterTypes.length];
+
+		for (int i = 0; i < args.length; i++) {
+			var cl = parameterTypes[i];
+			if (cl == null)
+				continue;
+
+			args[i] = getInstance(cl);
+		}
+
+		return args;
 	}
 }

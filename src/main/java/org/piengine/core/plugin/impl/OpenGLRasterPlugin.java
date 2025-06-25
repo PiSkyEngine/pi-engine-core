@@ -23,73 +23,31 @@
  */
 package org.piengine.core.plugin.impl;
 
-import org.piengine.core.app.App;
-import org.piengine.core.plugin.Plugin;
-import org.piengine.core.scene.Scene;
-import org.piengine.core.scene.SceneNode;
+import org.piengine.core.plugin.BasePlugin;
+import org.piengine.core.plugin.PluginContext;
+import org.piengine.core.plugin.PluginMetadata;
 
 /**
- * Example OpenGL rendering plugin.
- * Not exported, internal to the module.
+ * Example OpenGL rendering plugin. Not exported, internal to the module.
  */
-public class OpenGLRasterPlugin implements Plugin {
-    
-    /**
-	 * Inits the.
-	 *
-	 * @see org.piengine.core.plugin.Plugin#init()
-	 */
-    @Override
-    public void init() {
-        // Initialize OpenGL context
-    }
+public class OpenGLRasterPlugin extends BasePlugin {
 
-    /**
-	 * Update.
-	 *
-	 * @param deltaTime the delta time
-	 * @see org.piengine.core.plugin.Plugin#update(float)
-	 */
-    @Override
-    public void update(float deltaTime) {
-        // Update global rendering state (e.g., camera)
-    }
+	public static final PluginMetadata META = PluginMetadata.of("org.piengine:pi-engine-opengl:1.0.0");
 
-    /**
-	 * Shutdown.
-	 *
-	 * @see org.piengine.core.plugin.Plugin#shutdown()
-	 */
-    @Override
-    public void shutdown() {
-        // Release OpenGL resources
-    }
+	public OpenGLRasterPlugin(PluginMetadata meta) {
+		super(meta);
+	}
 
-    /**
-	 * Inits the for app.
-	 *
-	 * @param app the app
-	 * @see org.piengine.core.plugin.Plugin#initForApp(org.piengine.core.app.App)
-	 */
-    @Override
-    public void initForApp(App app) {
-        // Configure rendering for app-specific settings (e.g., viewport)
-    }
+	public OpenGLRasterPlugin() {
+		super(META);
+	}
 
-    /**
-	 * Process scene.
-	 *
-	 * @param scene the scene
-	 * @see org.piengine.core.plugin.Plugin#processScene(org.piengine.core.scene.Scene)
+	/**
+	 * @see org.piengine.core.plugin.BasePlugin#initialize(org.piengine.core.plugin.PluginContext)
 	 */
-    @Override
-    public void processScene(Scene scene) {
-        for (SceneNode node : scene.getNodes()) {
-            if (node.getMesh() != null) {
-                // Render mesh with material
-            } else if (node.getLight() != null) {
-                // Apply lighting
-            }
-        }
-    }
+	@Override
+	public void initialize(PluginContext context) {
+		throw new UnsupportedOperationException("not implemented yet");
+	}
+
 }

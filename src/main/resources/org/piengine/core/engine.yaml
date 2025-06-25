@@ -1,0 +1,13 @@
+engine:
+  threads:
+    min: 0
+    max: 2147483647
+  window:
+    width: 1280
+    height: 720
+    fullscreen: false
+    resizable: false
+    title: ""
+  plugins:
+    - org.piengine:pi-engine-threaded-dispatcher
+#    - org.piengine:pi-engine-debug-plugin

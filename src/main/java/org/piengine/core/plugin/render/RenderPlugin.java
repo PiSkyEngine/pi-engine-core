@@ -21,17 +21,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package org.piengine.core;
+package org.piengine.core.plugin.render;
+
+import org.piengine.core.plugin.Plugin;
 
 /**
- * The Class Main.
+ * 
  *
  * @author Mark Bednarczyk [mark@slytechs.com]
  * @author Sly Technologies Inc.
  */
-public class Main {
+public interface RenderPlugin extends Plugin {
 
-	void main() {
-		System.out.println("Hello World");
-	}
+	void render(float dt);
+	
 }

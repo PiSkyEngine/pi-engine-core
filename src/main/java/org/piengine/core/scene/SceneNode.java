@@ -23,7 +23,7 @@
  */
 package org.piengine.core.scene;
 
-import org.piengine.commons.math.Vector3D.Vector3f;
+import org.piengine.math.Vector3D.Vector3f;
 
 /**
  * Represents a node in the scenegraph (e.g., mesh, light, camera).

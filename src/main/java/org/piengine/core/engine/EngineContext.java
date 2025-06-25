@@ -21,17 +21,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package org.piengine.core;
+package org.piengine.core.engine;
+
+import org.piengine.core.engine.impl.EngineStateSupport;
+import org.piengine.core.execution.TaskContext;
+import org.piengine.core.execution.TaskInjector;
 
 /**
- * The Class Main.
- *
  * @author Mark Bednarczyk [mark@slytechs.com]
  * @author Sly Technologies Inc.
  */
-public class Main {
+public interface EngineContext {
 
-	void main() {
-		System.out.println("Hello World");
-	}
+	PiEngine engine();
+
+	EngineConfig engineConfig();
+
+	EngineStateSupport engineState();
+
+	EngineInjector injector();
+	
+	TaskInjector newTaskInjector(TaskContext context);
 }

@@ -21,17 +21,84 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package org.piengine.core;
+package org.piengine.core.plugin.app;
+
+import org.piengine.core.plugin.Plugin;
+import org.piengine.core.plugin.PluginState;
+import org.piengine.core.scene.Scene;
 
 /**
- * The Class Main.
- *
- * @author Mark Bednarczyk [mark@slytechs.com]
- * @author Sly Technologies Inc.
+ * Interface for apps, supporting concurrent execution and pause/unpause. Each
+ * app manages its own scene and plugins.
  */
-public class Main {
+public interface AppPlugin extends Plugin {
 
-	void main() {
-		System.out.println("Hello World");
-	}
+	/**
+	 * Initialize.
+	 */
+	void initialize();
+
+	/**
+	 * Start.
+	 */
+	@Override
+	void start();
+
+	/**
+	 * Update.
+	 *
+	 * @param deltaTime the delta time
+	 */
+	void update(float deltaTime);
+
+	/**
+	 * Pause.
+	 */
+	@Override
+	void pause();
+
+	/**
+	 * Unpause.
+	 */
+	@Override
+	void unpause();
+
+	/**
+	 * Stop.
+	 */
+	@Override
+	void stop();
+
+	/**
+	 * Cleanup.
+	 */
+	void cleanup();
+
+	/**
+	 * Gets the scene.
+	 *
+	 * @return the scene
+	 */
+	Scene getScene();
+
+	/**
+	 * Gets the status.
+	 *
+	 * @return the status
+	 */
+	PluginState getStatus();
+
+	/**
+	 * Adds the plugin.
+	 *
+	 * @param plugin the plugin
+	 */
+	void addPlugin(Plugin plugin);
+
+	/**
+	 * Removes the plugin.
+	 *
+	 * @param plugin the plugin
+	 */
+	void removePlugin(Plugin plugin);
 }

@@ -21,17 +21,43 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package org.piengine.core;
+package org.piengine.core.plugin;
+
+import java.util.Optional;
+
+import org.piengine.core.plugin.registry.PluginSignature;
 
 /**
- * The Class Main.
- *
  * @author Mark Bednarczyk [mark@slytechs.com]
  * @author Sly Technologies Inc.
  */
-public class Main {
+public interface PluginMetadata extends HasPluginId {
 
-	void main() {
-		System.out.println("Hello World");
+	static PluginMetadata of(int priority, String id) {
+		return new PluginMetadataRecord(priority, id);
 	}
+
+	static PluginMetadata of(String id) {
+		return of(0, id);
+	}
+
+	/**
+	 * @return
+	 */
+	static PluginMetadata empty() {
+		return PluginMetadataRecord.EMPTY;
+	}
+
+	int priority();
+
+	/**
+	 * @see org.piengine.core.plugin.HasPluginId#pluginId()
+	 */
+	@Override
+	PluginId pluginId();
+
+	/**
+	 * @return
+	 */
+	Optional<PluginSignature> signature();
 }

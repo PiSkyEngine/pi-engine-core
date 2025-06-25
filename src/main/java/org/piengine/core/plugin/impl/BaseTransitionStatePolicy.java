@@ -21,17 +21,44 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package org.piengine.core;
+
+package org.piengine.core.plugin.impl;
+
+import org.piengine.core.plugin.PluginState.Policy;
 
 /**
- * The Class Main.
+ * 
  *
  * @author Mark Bednarczyk [mark@slytechs.com]
  * @author Sly Technologies Inc.
  */
-public class Main {
+public abstract class BaseTransitionStatePolicy implements Policy {
 
-	void main() {
-		System.out.println("Hello World");
+	/** Predefined policy allowing only single-step transitions. */
+	public static final Policy ONE_STOP_TRANSITION = new TransitionPolicyOneStep();
+
+	/** Predefined policy allowing direct jumps to any state. */
+	public static final Policy JUMP_TO_TRANSITION = new TransitionPolicyJumpTo();
+
+	/** Predefined policy requiring transitions through all intermediate states. */
+	public static final Policy STEP_THROUGH_TRANSITION = new TransitionPolicyStepThrough();
+
+	private final String name;
+
+	protected BaseTransitionStatePolicy(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * @see org.piengine.core.plugin.Policy#name()
+	 */
+	@Override
+	public String name() {
+		return this.name;
+	}
+
+	@Override
+	public String toString() {
+		return "Policy [" + name() + "]";
 	}
 }

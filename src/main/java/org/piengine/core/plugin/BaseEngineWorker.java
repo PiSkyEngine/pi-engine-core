@@ -21,17 +21,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package org.piengine.core;
+package org.piengine.core.plugin;
+
+import org.piengine.core.engine.EngineWorker;
 
 /**
- * The Class Main.
- *
- * @author Mark Bednarczyk [mark@slytechs.com]
- * @author Sly Technologies Inc.
+ * The Class BasePlugin.
  */
-public class Main {
+public abstract class BaseEngineWorker implements EngineWorker {
 
-	void main() {
-		System.out.println("Hello World");
+	private final int priority;
+
+	/**
+	 * Instantiates a new base plugin.
+	 *
+	 * @param meta the meta
+	 */
+	public BaseEngineWorker(int priority) {
+		this.priority = priority;
 	}
+
+	/**
+	 * @see org.piengine.util.Prioritizable#priority()
+	 */
+	@Override
+	public int priority() {
+		return this.priority;
+	}
+
 }

@@ -21,17 +21,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package org.piengine.core;
+
+package org.piengine.core.execution;
 
 /**
- * The Class Main.
+ * 
  *
  * @author Mark Bednarczyk [mark@slytechs.com]
  * @author Sly Technologies Inc.
  */
-public class Main {
+public class TaskContext {
 
-	void main() {
-		System.out.println("Hello World");
+	Task task;
+
+	public TaskContext() {
+	}
+	
+	public Task task() {
+		return task;
 	}
 }

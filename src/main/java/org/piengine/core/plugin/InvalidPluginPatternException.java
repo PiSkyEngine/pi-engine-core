@@ -21,17 +21,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package org.piengine.core;
+
+package org.piengine.core.plugin;
 
 /**
- * The Class Main.
- *
- * @author Mark Bednarczyk [mark@slytechs.com]
- * @author Sly Technologies Inc.
+ * Exception thrown when a plugin pattern string is invalid or malformed.
  */
-public class Main {
 
-	void main() {
-		System.out.println("Hello World");
+public class InvalidPluginPatternException extends RuntimeException {
+	private static final long serialVersionUID = -4737986433262730029L;
+
+	/**
+	 * Constructs a new InvalidPluginPatternException with the specified message.
+	 *
+	 * @param message the detail message
+	 */
+	public InvalidPluginPatternException(String message) {
+		super(message);
+	}
+
+	/**
+	 * Constructs a new InvalidPluginPatternException with the specified message and
+	 * cause.
+	 *
+	 * @param message the detail message
+	 * @param cause   the cause of the exception
+	 */
+	public InvalidPluginPatternException(String message, Throwable cause) {
+		super(message, cause);
 	}
 }

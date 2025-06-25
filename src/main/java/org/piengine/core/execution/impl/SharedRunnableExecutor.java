@@ -21,17 +21,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package org.piengine.core;
+
+package org.piengine.core.execution.impl;
+
+import java.util.List;
+
+import org.piengine.core.engine.EngineContext;
 
 /**
- * The Class Main.
- *
  * @author Mark Bednarczyk [mark@slytechs.com]
  * @author Sly Technologies Inc.
  */
-public class Main {
+public class SharedRunnableExecutor implements Runnable {
 
-	void main() {
-		System.out.println("Hello World");
+	private Runnable[] runnableList;
+
+	public void initialize(EngineContext engineContext, List<RunnableTask> runnableTaskList) {
+		runnableList = runnableTaskList.toArray(Runnable[]::new);
+	}
+
+	public void shutdown() {
+		runnableList = null;
+	}
+
+	public void start() {}
+
+	public void stop() {}
+
+	/**
+	 * @see java.lang.Runnable#run()
+	 */
+	@Override
+	public void run() {
+		for (var runnable : runnableList)
+			runnable.run();
 	}
 }
